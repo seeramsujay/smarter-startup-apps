@@ -43,7 +43,7 @@ TEMPLATE = """
             <h1>Ghost OS X</h1>
             <p>Activity Intelligence Engine</p>
         </div>
-        
+
         <div class="card" style="margin-bottom: 20px;">
             <h2>Current Prediction (Hour: {{ hour }}:00)</h2>
             {% if prediction %}
