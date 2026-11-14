@@ -6,13 +6,13 @@ from datetime import datetime
 sys.stdout.reconfigure(line_buffering=True)
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 
-from core.autopilot import predict_for_hour, launch_app, is_app_running
-from core.config import get_config
-from core.voice import speak
-from core.logger import log
-from core.feedback import init_feedback_table
+from core.autopilot import is_app_running, launch_app, predict_for_hour
 from core.checks import preflight
+from core.config import get_config
+from core.feedback import init_feedback_table
+from core.logger import log
 from core.paths import DB_PATH
+from core.voice import speak
 
 last_launched = {}
 _miss_count = {}

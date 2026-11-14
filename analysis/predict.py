@@ -11,8 +11,7 @@ def get_connection():
 def time_prediction():
     conn = get_connection()
     try:
-        rows = conn.execute(
-            """
+        rows = conn.execute("""
             SELECT hour, app_name FROM (
                 SELECT
                     strftime('%H', start_time) AS hour,
@@ -25,8 +24,7 @@ def time_prediction():
             )
             WHERE rnk = 1
             ORDER BY hour
-            """
-        ).fetchall()
+            """).fetchall()
     finally:
         conn.close()
     return rows
@@ -35,13 +33,11 @@ def time_prediction():
 def next_app_prediction():
     conn = get_connection()
     try:
-        rows = conn.execute(
-            """
+        rows = conn.execute("""
             SELECT app_name FROM activity
             WHERE app_name != 'Idle'
             ORDER BY start_time ASC
-            """
-        ).fetchall()
+            """).fetchall()
     finally:
         conn.close()
 
@@ -77,7 +73,12 @@ def main():
         return
 
     try:
-        from core.feedback import adaptive_predict_for_hour, get_feedback_stats, init_feedback_table
+        from core.feedback import (
+            adaptive_predict_for_hour,
+            get_feedback_stats,
+            init_feedback_table,
+        )
+
         init_feedback_table()
         has_feedback = True
     except Exception:

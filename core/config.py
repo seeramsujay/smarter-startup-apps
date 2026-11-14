@@ -2,7 +2,7 @@ import json
 import os
 import shutil
 
-from core.paths import CONFIG_PATH, DATA_DIR
+from core.paths import CONFIG_PATH
 
 DEFAULTS = {
     "overlay": True,
@@ -16,9 +16,21 @@ DEFAULTS = {
     "data_dir": "~/.local/share/ghostos",
     "launch_map": {
         "VSCode": ["code", "code-oss", "codium"],
-        "Chrome": ["google-chrome", "google-chrome-stable", "chromium", "chromium-browser"],
+        "Chrome": [
+            "google-chrome",
+            "google-chrome-stable",
+            "chromium",
+            "chromium-browser",
+        ],
         "Firefox": ["firefox", "firefox-esr"],
-        "Terminal": ["gnome-terminal", "konsole", "xfce4-terminal", "alacritty", "kitty", "xterm"],
+        "Terminal": [
+            "gnome-terminal",
+            "konsole",
+            "xfce4-terminal",
+            "alacritty",
+            "kitty",
+            "xterm",
+        ],
     },
 }
 

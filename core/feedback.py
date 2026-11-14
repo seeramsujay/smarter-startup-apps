@@ -1,7 +1,6 @@
-import os
+import math
 import sqlite3
 import subprocess
-import math
 from datetime import datetime
 
 from core.logger import log
@@ -40,16 +39,14 @@ def predict_for_hour_legacy(hour):
 def init_feedback_table():
     conn = sqlite3.connect(DB_PATH)
     try:
-        conn.execute(
-            """
+        conn.execute("""
             CREATE TABLE IF NOT EXISTS feedback (
                 id        INTEGER PRIMARY KEY AUTOINCREMENT,
                 app_name  TEXT    NOT NULL,
                 timestamp TEXT    NOT NULL,
                 success   INTEGER NOT NULL
             )
-            """
-        )
+            """)
         conn.commit()
     except Exception:
         pass
@@ -78,9 +75,13 @@ def get_active_window_title():
         wid = subprocess.check_output(
             ["xdotool", "getactivewindow"], stderr=subprocess.DEVNULL
         ).strip()
-        title = subprocess.check_output(
-            ["xdotool", "getwindowname", wid], stderr=subprocess.DEVNULL
-        ).decode().strip()
+        title = (
+            subprocess.check_output(
+                ["xdotool", "getwindowname", wid], stderr=subprocess.DEVNULL
+            )
+            .decode()
+            .strip()
+        )
         return title.lower() if title else ""
     except Exception:
         return ""
@@ -88,6 +89,7 @@ def get_active_window_title():
 
 def check_prediction_result(app_name):
     from tracker import normalize_app
+
     title = get_active_window_title()
     if not title:
         return None
@@ -97,6 +99,7 @@ def check_prediction_result(app_name):
 
 def collect_feedback(app_name):
     import time
+
     time.sleep(FEEDBACK_CHECK_DELAY)
     result = check_prediction_result(app_name)
     if result is not None:
@@ -190,15 +193,13 @@ def adaptive_predict_for_hour(hour):
 def get_feedback_stats():
     conn = sqlite3.connect(DB_PATH)
     try:
-        rows = conn.execute(
-            """
+        rows = conn.execute("""
             SELECT app_name,
                    COUNT(*) AS total,
                    SUM(success) AS hits
             FROM feedback
             GROUP BY app_name
-            """
-        ).fetchall()
+            """).fetchall()
     except Exception:
         return []
     finally:

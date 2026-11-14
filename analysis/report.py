@@ -92,13 +92,13 @@ def main(day=None):
     total_time = sum(t for _, t, _ in apps)
     total_sessions = sum(s for _, _, s in apps)
 
-    print(f"╔══════════════════════════════════════╗")
-    print(f"║       GHOST OS X — DAILY REPORT      ║")
-    print(f"╠══════════════════════════════════════╣")
+    print("╔══════════════════════════════════════╗")
+    print("║       GHOST OS X — DAILY REPORT      ║")
+    print("╠══════════════════════════════════════╣")
     print(f"║  Date: {day}                   ║")
-    print(f"╚══════════════════════════════════════╝")
+    print("╚══════════════════════════════════════╝")
 
-    print(f"\n=== Overview ===")
+    print("\n=== Overview ===")
     print(f"Total tracked: {fmt_time(total_time)}")
     print(f"Total sessions: {total_sessions}")
     print(f"Apps used: {len(apps)}")
@@ -114,16 +114,18 @@ def main(day=None):
         bar = "█" * (score // 5) + "░" * (20 - score // 5)
         print(f"Focus score: [{bar}] {score}/100")
 
-    print(f"\n=== App Breakdown ===")
+    print("\n=== App Breakdown ===")
     for name, total, sessions in apps:
         pct = (total / total_time) * 100 if total_time > 0 else 0
         bar_len = int(pct / 5)
         bar = "▓" * bar_len + "░" * (20 - bar_len)
-        print(f"  {name:<15} {fmt_time(total):>7}  {bar}  {pct:.0f}%  ({sessions} sessions)")
+        print(
+            f"  {name:<15} {fmt_time(total):>7}  {bar}  {pct:.0f}%  ({sessions} sessions)"
+        )
 
     hours = peak_hours(day)
     if hours:
-        print(f"\n=== Peak Hours ===")
+        print("\n=== Peak Hours ===")
         for hour, total in hours:
             print(f"  {hour}:00  {fmt_time(total)}")
 
@@ -132,5 +134,6 @@ def main(day=None):
 
 if __name__ == "__main__":
     import sys
+
     day_arg = sys.argv[1] if len(sys.argv) > 1 else None
     main(day_arg)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-import sys
 import os
+import sys
 
 USAGE = """
 Ghost OS X — Activity Intelligence Engine
@@ -26,12 +26,14 @@ Config keys: overlay, voice, autopilot, suggestions, dashboard, daemon_interval,
 
 def _ensure_migration():
     from core.paths import migrate
+
     migrate()
 
 
 def cmd_track():
     _ensure_migration()
     from tracker import main
+
     main()
 
 
@@ -39,48 +41,58 @@ def cmd_report():
     _ensure_migration()
     day = sys.argv[2] if len(sys.argv) > 2 else None
     from analysis.report import main
+
     main(day)
 
 
 def cmd_patterns():
     _ensure_migration()
     from analysis.patterns import main
+
     main()
 
 
 def cmd_sequences():
     _ensure_migration()
     from analysis.sequences import main
+
     main()
 
 
 def cmd_predict():
     _ensure_migration()
     from analysis.predict import main
+
     main()
 
 
 def cmd_autopilot():
     _ensure_migration()
     from core.autopilot import main
+
     main()
 
 
 def cmd_daemon():
     _ensure_migration()
     from core.daemon import main
+
     main()
 
 
 def cmd_dashboard():
     _ensure_migration()
     from core.config import get_config
+
     if not get_config("dashboard"):
-        print("[GhostOS] Dashboard disabled in config (run: ghostos config set dashboard true)")
+        print(
+            "[GhostOS] Dashboard disabled in config (run: ghostos config set dashboard true)"
+        )
         return
     try:
         import flask
         from ui.dashboard import main
+
         main()
     except ImportError:
         print("[GhostOS] Flask not installed. Run: pip install flask")
@@ -129,7 +141,9 @@ def cmd_config():
 def cmd_status():
     _ensure_migration()
     import sqlite3
+
     from core.paths import DB_PATH
+
     if not os.path.exists(DB_PATH):
         print("No database found. Run 'ghostos track' first.")
         return
@@ -137,10 +151,14 @@ def cmd_status():
     conn = sqlite3.connect(DB_PATH)
     try:
         total = conn.execute("SELECT COUNT(*) FROM activity").fetchone()[0]
-        apps = conn.execute("SELECT COUNT(DISTINCT app_name) FROM activity").fetchone()[0]
+        apps = conn.execute("SELECT COUNT(DISTINCT app_name) FROM activity").fetchone()[
+            0
+        ]
         first = conn.execute("SELECT MIN(start_time) FROM activity").fetchone()[0]
         last = conn.execute("SELECT MAX(end_time) FROM activity").fetchone()[0]
-        total_dur = conn.execute("SELECT SUM(duration) FROM activity").fetchone()[0] or 0
+        total_dur = (
+            conn.execute("SELECT SUM(duration) FROM activity").fetchone()[0] or 0
+        )
     finally:
         conn.close()
 

@@ -1,10 +1,13 @@
-from setuptools import setup, find_packages
 import os
+
+from setuptools import find_packages, setup
+
 
 def check_create_data_dir():
     data_dir = os.path.join(os.path.expanduser("~"), ".local", "share", "ghostos")
     os.makedirs(data_dir, exist_ok=True)
     os.makedirs(os.path.join(data_dir, "logs"), exist_ok=True)
+
 
 try:
     check_create_data_dir()

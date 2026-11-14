@@ -11,14 +11,12 @@ def get_connection():
 def top_apps():
     conn = get_connection()
     try:
-        rows = conn.execute(
-            """
+        rows = conn.execute("""
             SELECT app_name, SUM(duration) as total
             FROM activity
             GROUP BY app_name
             ORDER BY total DESC
-            """
-        ).fetchall()
+            """).fetchall()
     finally:
         conn.close()
     return rows
@@ -27,8 +25,7 @@ def top_apps():
 def hourly_pattern():
     conn = get_connection()
     try:
-        rows = conn.execute(
-            """
+        rows = conn.execute("""
             SELECT hour, app_name FROM (
                 SELECT
                     strftime('%H', start_time) AS hour,
@@ -40,8 +37,7 @@ def hourly_pattern():
             )
             WHERE rnk = 1
             ORDER BY hour
-            """
-        ).fetchall()
+            """).fetchall()
     finally:
         conn.close()
     return {hour: app for hour, app in rows}
