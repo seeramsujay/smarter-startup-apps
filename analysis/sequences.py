@@ -11,13 +11,11 @@ def get_connection():
 def transition_sequences():
     conn = get_connection()
     try:
-        rows = conn.execute(
-            """
+        rows = conn.execute("""
             SELECT app_name FROM activity
             WHERE app_name != 'Idle'
             ORDER BY start_time ASC
-            """
-        ).fetchall()
+            """).fetchall()
     finally:
         conn.close()
 

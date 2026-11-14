@@ -10,7 +10,7 @@ except ImportError:
     print("[GhostOS] Flask not installed. Run: pip install flask")
     sys.exit(1)
 
-from analysis.patterns import top_apps, hourly_pattern
+from analysis.patterns import hourly_pattern, top_apps
 from core.feedback import adaptive_predict_for_hour
 from core.paths import DB_PATH
 

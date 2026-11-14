@@ -8,6 +8,7 @@ OLD_LOG = os.path.join(PROJECT_DIR, "logs", "ghostos.log")
 
 DATA_DIR = os.path.join(os.path.expanduser("~"), ".local", "share", "ghostos")
 
+
 def _check_writable(path):
     try:
         os.makedirs(path, exist_ok=True)
@@ -18,6 +19,7 @@ def _check_writable(path):
         return True
     except Exception:
         return False
+
 
 if not _check_writable(DATA_DIR):
     DATA_DIR = os.path.join(PROJECT_DIR, ".ghostos_data")
@@ -49,4 +51,3 @@ def _migrate_file(src, dst):
             shutil.copy2(src, dst)
         except Exception:
             pass
-

@@ -31,9 +31,13 @@ def get_active_window():
         wid = subprocess.check_output(
             ["xdotool", "getactivewindow"], stderr=subprocess.DEVNULL
         ).strip()
-        title = subprocess.check_output(
-            ["xdotool", "getwindowname", wid], stderr=subprocess.DEVNULL
-        ).decode().strip()
+        title = (
+            subprocess.check_output(
+                ["xdotool", "getwindowname", wid], stderr=subprocess.DEVNULL
+            )
+            .decode()
+            .strip()
+        )
         return normalize_app(title) if title else "Idle"
     except Exception:
         return "Idle"

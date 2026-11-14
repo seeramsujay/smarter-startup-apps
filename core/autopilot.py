@@ -1,21 +1,21 @@
 import os
 import sqlite3
 import subprocess
-import time
 import threading
+import time
 from datetime import datetime
 
-from core.config import get_config
-from core.voice import speak
-from core.logger import log
 from core.checks import find_available_command
-from core.paths import DB_PATH
+from core.config import get_config
 from core.feedback import (
-    init_feedback_table,
     adaptive_predict_for_hour,
     collect_feedback,
+    init_feedback_table,
     predict_for_hour_legacy,
 )
+from core.logger import log
+from core.paths import DB_PATH
+from core.voice import speak
 
 MAX_CHAIN = 4
 LAUNCH_DELAY = 2.5
@@ -48,13 +48,11 @@ def predict_for_hour(hour):
 def get_transition_map():
     conn = get_connection()
     try:
-        rows = conn.execute(
-            """
+        rows = conn.execute("""
             SELECT app_name FROM activity
             WHERE app_name != 'Idle'
             ORDER BY start_time ASC
-            """
-        ).fetchall()
+            """).fetchall()
     finally:
         conn.close()
 
@@ -187,7 +185,7 @@ def main():
 
     print(f"[GhostOS] Hour: {hour}:00")
     print(f"[GhostOS] Predicted: {start_app} ({confidence}%, {trend})")
-    print(f"[GhostOS] Reconstructing workflow...")
+    print("[GhostOS] Reconstructing workflow...")
     print(f"[GhostOS] Chain: {' → '.join(chain)}")
     speak(f"Reconstructing workflow. Starting with {chain[0]}")
     log(f"Phantom mode: {' → '.join(chain)} [{confidence}% {trend}]")

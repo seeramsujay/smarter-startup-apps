@@ -2,15 +2,14 @@ import os
 import shutil
 import sqlite3
 
-from core.paths import DB_PATH, DATA_DIR
+from core.paths import DATA_DIR, DB_PATH
 
 
 def init_db():
     os.makedirs(DATA_DIR, exist_ok=True)
     try:
         conn = sqlite3.connect(DB_PATH)
-        conn.execute(
-            """
+        conn.execute("""
             CREATE TABLE IF NOT EXISTS activity (
                 id         INTEGER PRIMARY KEY AUTOINCREMENT,
                 app_name   TEXT    NOT NULL,
@@ -18,16 +17,14 @@ def init_db():
                 end_time   TEXT    NOT NULL,
                 duration   REAL    NOT NULL
             )
-            """
-        )
+            """)
         conn.execute("SELECT COUNT(*) FROM activity")
         conn.commit()
         conn.close()
     except sqlite3.DatabaseError:
         _backup_db(DB_PATH)
         conn = sqlite3.connect(DB_PATH)
-        conn.execute(
-            """
+        conn.execute("""
             CREATE TABLE IF NOT EXISTS activity (
                 id         INTEGER PRIMARY KEY AUTOINCREMENT,
                 app_name   TEXT    NOT NULL,
@@ -35,8 +32,7 @@ def init_db():
                 end_time   TEXT    NOT NULL,
                 duration   REAL    NOT NULL
             )
-            """
-        )
+            """)
         conn.commit()
         conn.close()
 

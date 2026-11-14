@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 
-from core.paths import LOG_FILE, LOG_DIR
+from core.paths import LOG_DIR, LOG_FILE
 
 MAX_LOG_SIZE = 5 * 1024 * 1024  # 5 MB
 
