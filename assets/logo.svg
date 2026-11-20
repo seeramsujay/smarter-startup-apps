@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080A14" />
+      <stop offset="50%" stop-color="#101426" />
+      <stop offset="100%" stop-color="#05060D" />
+    </linearGradient>
+
+    <!-- Ghost Indigo to Cyan Gradient -->
+    <linearGradient id="ghost-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818CF8" />
+      <stop offset="50%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#06B6D4" />
+    </linearGradient>
+
+    <!-- Markov Transition Sparkle -->
+    <linearGradient id="markov-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C084FC" />
+      <stop offset="100%" stop-color="#38BDF8" />
+    </linearGradient>
+
+    <linearGradient id="core-glow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.05" />
+    </linearGradient>
+
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="subtle-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="800" rx="160" fill="url(#bg-grad)" />
+  <rect width="796" height="796" x="2" y="2" rx="158" fill="none" stroke="#1E293B" stroke-width="2" />
+
+  <!-- Desktop Window Grid Reticle -->
+  <g opacity="0.16" stroke="#00D2FF" stroke-width="1.5">
+    <circle cx="400" cy="380" r="140" fill="none" stroke-dasharray="6 6" />
+    <circle cx="400" cy="380" r="230" fill="none" stroke-dasharray="8 8" />
+    <line x1="400" y1="100" x2="400" y2="660" stroke-dasharray="4 8" />
+    <line x1="120" y1="380" x2="680" y2="380" stroke-dasharray="4 8" />
+  </g>
+
+  <!-- Phantom Staging Window Frame (Perspective Desktop Glass) -->
+  <rect x="230" y="200" width="340" height="260" rx="20" fill="url(#core-glow)" stroke="url(#ghost-grad)" stroke-width="6" filter="url(#glow)" />
+  
+  <!-- Window Header Bar with Control Dots -->
+  <line x1="230" y1="245" x2="570" y2="245" stroke="#334155" stroke-width="2" />
+  <circle cx="260" cy="222" r="5" fill="#EF4444" />
+  <circle cx="275" cy="222" r="5" fill="#F59E0B" />
+  <circle cx="290" cy="222" r="5" fill="#10B981" />
+
+  <!-- GhostOS Silhouette Floating inside Window -->
+  <path d="M 400 270 
+           C 340 270, 310 320, 310 390 
+           L 310 490 
+           L 340 470 
+           L 370 490 
+           L 400 470 
+           L 430 490 
+           L 460 470 
+           L 490 490 
+           L 490 390 
+           C 490 320, 460 270, 400 270 Z" 
+        fill="#0E162A" 
+        stroke="url(#ghost-grad)" 
+        stroke-width="8" 
+        stroke-linejoin="round" 
+        filter="url(#glow)" />
+
+  <!-- Ghost Eyes (Spectral Terminal Screens) -->
+  <g filter="url(#subtle-glow)">
+    <rect x="345" y="340" width="28" height="34" rx="10" fill="#22D3EE" />
+    <rect x="427" y="340" width="28" height="34" rx="10" fill="#22D3EE" />
+    <circle cx="359" cy="357" r="5" fill="#0B0F19" />
+    <circle cx="441" cy="357" r="5" fill="#0B0F19" />
+  </g>
+
+  <!-- Markov Chain Transition Vectors (Predictive App Sequences) -->
+  <g stroke="url(#markov-grad)" stroke-width="3" fill="none" stroke-dasharray="6 4" filter="url(#subtle-glow)">
+    <!-- Branch: Chrome -> VSCode -> Terminal -->
+    <path d="M 280 340 Q 300 420, 340 440" />
+    <path d="M 520 340 Q 500 420, 460 440" />
+  </g>
+
+  <!-- App Transition State Nodes -->
+  <g filter="url(#subtle-glow)">
+    <circle cx="260" cy="340" r="10" fill="#6366F1" />
+    <circle cx="540" cy="340" r="10" fill="#10B981" />
+    <circle cx="400" cy="530" r="12" fill="#38BDF8" stroke="#F8FAFC" stroke-width="2" />
+  </g>
+
+  <!-- Autopilot Bolt Icon inside Ghost -->
+  <polygon points="400,400 390,425 405,425 395,450 415,420 402,420" fill="#F8FAFC" filter="url(#subtle-glow)" />
+
+  <!-- Typography -->
+  <text x="400" y="685" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="800" fill="#F8FAFC" letter-spacing="4">
+    GHOST<tspan fill="#6366F1">OS X</tspan>
+  </text>
+  <text x="400" y="722" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#94A3B8" letter-spacing="3">
+    PREDICTIVE WORKFLOW &amp; WORKSPACE AUTOPILOT
+  </text>
+</svg>

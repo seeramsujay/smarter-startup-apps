@@ -1,10 +1,23 @@
-# 👻 GhostOS X: Zero-Dependency Proactive Workflow Intelligence for Linux
+<div align="center">
 
-> Prepares your coding workspaces and application flows before you even touch your keyboard.
+<img src="assets/logo.svg" alt="GhostOS X Logo" width="220" />
 
-[![Python Version](https://img.shields.io/badge/Python-3.10+-blue.svg?style=flat-square)](https://www.python.org/)
-[![Linux X11 Compatible](https://img.shields.io/badge/Linux-X11%20Compatible-green.svg?style=flat-square)](https://www.kernel.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+# GhostOS X
+
+### *Zero-Dependency Proactive Desktop Intelligence & Autonomous Workspace Staging for Linux*
+
+[![Python Version](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Linux X11 Compatible](https://img.shields.io/badge/Platform-Linux%20X11%20%7C%20Wayland-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://www.kernel.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
+[![Architecture Roadmap](https://img.shields.io/badge/Engineering-Future%20Roadmap-8A2BE2?style=for-the-badge)](future.md)
+
+<p align="center">
+  <b>Prepares your coding workspaces, editor states, and application flows before you even touch your keyboard.</b>
+</p>
+
+---
+
+</div>
 
 GhostOS X is an ultra-lightweight, local-first Linux background service that learns your desktop behaviors, predicts your next action sequence, and automatically stages your workspace before you start. Unlike bloated, resource-heavy machine learning frameworks, it operates entirely offline using deterministic Markov-like state transitions and a local SQLite database to deliver sub-millisecond, zero-dependency environment preparation.
 
